@@ -1,47 +1,163 @@
---- ./configure.in.org	Sun Jan 20 16:54:01 2002
-+++ ./configure.in	Wed Jul 24 02:31:16 2002
-@@ -25,13 +25,8 @@
- AC_PROG_RANLIB
- AC_DECL_YYTEXT
- 
--CF_SUBST(archiver,AR,ar)
--CF_SUBST(archiver options,AR_OPTS,rv)
--
--CF_DISABLE_ECHO
--CF_PATHSEP
--CF_PROG_EXT
--CF_LIB_PREFIX
-+AC_SUBST(archiver,[AR],[ar])
-+AC_SUBST(archiver options,[AR_OPTS],[rv])
- 
- ###	checks for UNIX variants that set C preprocessor variables
- AC_AIX
-@@ -39,17 +34,15 @@
- AC_MINIX
- 
- ###	checks for compiler characteristics
--CF_ANSI_CC_REQD
- AC_CONST
--CF_CC_INIT_UNIONS
- 
- ###	options to control how much we build
- AC_MSG_CHECKING(if you wish to build only core functions)
- CF_ARG_DISABLE(extensions,
- 	[  --disable-extensions    test: build only core functions],
--	[DISABLE_EXTS=yes],
-+	DISABLE_EXTS=yes,
- 	[DISABLE_EXTS=no])
--AC_MSG_RESULT($DISABLE_EXTS)
-+AC_MSG_RESULT([$DISABLE_EXTS])
- if test "$DISABLE_EXTS" = yes ; then
- 	AC_DEFINE(SMALLER)
- 	AC_DEFINE(FEWNAMES)
-@@ -62,7 +55,7 @@
- AC_MSG_CHECKING(if you wish to disable shell/external commands)
- CF_ARG_DISABLE(shell,
- 	[  --disable-shell         test: disable shell/external commands],
--	[DISABLE_SHELL=yes],
-+	DISABLE_SHELL=yes,
- 	[DISABLE_SHELL=no])
- AC_MSG_RESULT($DISABLE_SHELL)
- if test "$DISABLE_SHELL" = yes ; then
+--- vile-9.4/acconfig.h.orig	1970-01-01 01:00:00.000000000 +0100
++++ vile-9.4/acconfig.h	2003-08-17 12:43:09.008334192 +0200
+@@ -0,0 +1,160 @@
++/* 
++ * config_h.in is a template file used by configure to produce config.h.
++ * config_h is then transformed (by config.status) into the header file 
++ * config.h.
++ * $Header$
++ */
++
++#undef ANSI_QSORT
++#undef ATHENA_WIDGETS
++#undef CC_CANNOT_INIT_UNIONS
++#undef CC_HAS_PROTOS
++#undef DECL_ERRNO
++#undef DECL_SYS_ERRLIST
++#undef DECL_SYS_NERR
++#undef DISP_ANSI
++#undef DISP_CURSES
++#undef DISP_TERMCAP
++#undef DISP_X11
++#undef DOALLOC
++#undef FEWNAMES
++#undef HAVE_CRYPT
++#undef HAVE_DEV_TTY
++#undef HAVE_EXTERN_TCAP_PC
++#undef HAVE_KILLPG
++#undef HAVE_LIBNEXTAW
++#undef HAVE_LIBNCURSES
++#undef HAVE_LIBNCURSESW
++#undef HAVE_LIBXAW
++#undef HAVE_LIBXAW3D
++#undef HAVE_LIBXAWPLUS
++#undef HAVE_LIBXPM
++#undef HAVE_LIBXT
++#undef HAVE_MKSTEMP
++#undef HAVE_NCURSESW_NCURSES_H
++#undef HAVE_NCURSES_H
++#undef HAVE_NCURSES_NCURSES_H
++#undef HAVE_NCURSES_TERM_H
++#undef HAVE_RESTARTABLE_PIPEREAD
++#undef HAVE_SIZECHANGE
++#undef HAVE_TERM_H
++#undef HAVE_TYPE_FD_SET
++#undef HAVE_WCTYPE
++#undef ISPELL_PROG
++#undef LOCALE
++#undef MISSING_EXTERN_ACCESS
++#undef MISSING_EXTERN_ALARM
++#undef MISSING_EXTERN_ATOI
++#undef MISSING_EXTERN_CHDIR
++#undef MISSING_EXTERN_CLOSE
++#undef MISSING_EXTERN_CRYPT
++#undef MISSING_EXTERN_DUP
++#undef MISSING_EXTERN_ENVIRON
++#undef MISSING_EXTERN_EXECLP
++#undef MISSING_EXTERN_FCLOSE
++#undef MISSING_EXTERN_FFLUSH
++#undef MISSING_EXTERN_FILENO
++#undef MISSING_EXTERN_FORK
++#undef MISSING_EXTERN_FPRINTF
++#undef MISSING_EXTERN_FPUTS
++#undef MISSING_EXTERN_FREAD
++#undef MISSING_EXTERN_FREE
++#undef MISSING_EXTERN_FSEEK
++#undef MISSING_EXTERN_FWRITE
++#undef MISSING_EXTERN_GETENV
++#undef MISSING_EXTERN_GETHOSTNAME
++#undef MISSING_EXTERN_GETPASS
++#undef MISSING_EXTERN_GETPGRP
++#undef MISSING_EXTERN_GETPID
++#undef MISSING_EXTERN_GETUID
++#undef MISSING_EXTERN_GETWD
++#undef MISSING_EXTERN_IOCTL
++#undef MISSING_EXTERN_ISATTY
++#undef MISSING_EXTERN_KILL
++#undef MISSING_EXTERN_KILLPG
++#undef MISSING_EXTERN_LONGJMP
++#undef MISSING_EXTERN_LSTAT
++#undef MISSING_EXTERN_MALLOC
++#undef MISSING_EXTERN_MEMSET
++#undef MISSING_EXTERN_MKDIR
++#undef MISSING_EXTERN_OPEN
++#undef MISSING_EXTERN_PERROR
++#undef MISSING_EXTERN_PIPE
++#undef MISSING_EXTERN_PRINTF
++#undef MISSING_EXTERN_PUTS
++#undef MISSING_EXTERN_QSORT
++#undef MISSING_EXTERN_READ
++#undef MISSING_EXTERN_READLINK
++#undef MISSING_EXTERN_REALLOC
++#undef MISSING_EXTERN_RINDEX
++#undef MISSING_EXTERN_SELECT
++#undef MISSING_EXTERN_SETBUF
++#undef MISSING_EXTERN_SETBUFFER
++#undef MISSING_EXTERN_SETITIMER
++#undef MISSING_EXTERN_SETJMP
++#undef MISSING_EXTERN_SETPGRP
++#undef MISSING_EXTERN_SETSID
++#undef MISSING_EXTERN_SETVBUF
++#undef MISSING_EXTERN_SLEEP
++#undef MISSING_EXTERN_SSCANF
++#undef MISSING_EXTERN_STRERROR
++#undef MISSING_EXTERN_STRTOL
++#undef MISSING_EXTERN_SYSTEM
++#undef MISSING_EXTERN_TGETENT
++#undef MISSING_EXTERN_TGETFLAG
++#undef MISSING_EXTERN_TGETINT
++#undef MISSING_EXTERN_TGETNUM
++#undef MISSING_EXTERN_TGOTO
++#undef MISSING_EXTERN_TIGETFLAG
++#undef MISSING_EXTERN_TIGETINT
++#undef MISSING_EXTERN_TIGETNUM
++#undef MISSING_EXTERN_TIGETSTR
++#undef MISSING_EXTERN_TIME
++#undef MISSING_EXTERN_TPARAM
++#undef MISSING_EXTERN_TPARM
++#undef MISSING_EXTERN_TPUTS
++#undef MISSING_EXTERN_UNLINK
++#undef MISSING_EXTERN_USE_DEFAULT_COLORS
++#undef MISSING_EXTERN_UTIME
++#undef MISSING_EXTERN_UTIMES
++#undef MISSING_EXTERN_WAIT
++#undef MISSING_EXTERN_WRITE
++#undef MOTIF_WIDGETS
++#undef NCURSES
++#undef NEED_CURSES_H
++#undef NEED_PTEM_H
++#undef NEED_TERMCAP_H
++#undef NEED_TERM_H
++#undef NO_LEAKS
++#undef NO_WIDGETS
++#undef OL_WIDGETS
++#undef OUTC_RETURN
++#undef OUTC_ARGS
++#undef OPT_EXEC_MACROS
++#undef OPT_FILTER
++#undef OPT_KEV_SCROLLBARS
++#undef OPT_KEV_DRAGGING
++#undef OPT_LOCALE
++#undef OPT_PERL
++#undef OPT_SHELL
++#undef OPT_TRACE
++#undef OPT_VMS_PATH
++#undef OPT_XAW_SCROLLBARS
++#undef PROG_EXT
++#undef RESOURCE_WITH_WAIT
++#undef SELECT_WITH_TIME
++#undef SIGRET
++#undef SIGT
++#undef SMALLER
++#undef SPELL_PROG
++#undef SVR4_TERMIO
++#undef SYSTEM_HAS_LINT_PROG
++#undef SYSTEM_NAME
++#undef SYS_UNIX
++#undef USE_PURIFY
++#undef USE_SYS_SELECT_H
++#undef USE_TERMINFO
++#undef XTOOLKIT
++#undef isready_c
++#undef os_chosen
++#undef scrn_chosen

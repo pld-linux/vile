@@ -1,21 +1,28 @@
+#
+# Conditional build:
+%bcond_without	static	# don't build static version
+#
 Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
-Version:	9.3
-Release:	0.2
+Version:	9.4
+Release:	1
 License:	GPL
 Group:		Applications/Editors
 # Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
-# Source0-md5:	9d8f396a936986d5a3542e40568886c8
+# Source0-md5:	1c69045467b7c48be99fa7ac2052a95f
 Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
+Patch1:		%{name}-nolibs.patch
 Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
 BuildRequires:	XFree86-libs
 BuildRequires:	autoconf
-BuildRequires:	automake
+%{?with_static:BuildRequires:	glibc-static}
 BuildRequires:	ncurses-devel
+%{?with_static:BuildRequires:	ncurses-static}
+Requires:	%{name}-common = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,7 +32,7 @@ areas, notably multi-file editing and viewing, key rebinding, and real
 X window system support.
 
 %description -l pl
-vile to edytor tekstu ¶ci¶le komatybilny z Vi je¶li chodzi o
+vile to edytor tekstu ¶ci¶le kompatybilny z Vi je¶li chodzi o
 klawiszologiê. Posiada wiele przydatnych dodatków jak mo¿liwo¶æ edycji
 wielu plików równocze¶nie, przemapowywanie klawiszy czy interfejs dla
 X Window.
@@ -39,7 +46,7 @@ Group:		Applications/Editors
 This package contains common files for vile and xvile.
 
 %description common -l pl
-Ten pakiet zawiera wspólne pliki vile i xvile.
+Ten pakiet zawiera pliki wspólne dla vile i xvile.
 
 %package static
 Summary:	vile static
@@ -53,16 +60,17 @@ The classic unix /bin/vi - small, static comiled editor which is
 useful as a rescue tool.
 
 %description static -l pl
-Klasyczny unixowy /bin/vi - ma³y, skompilowany statycznie edytor,
+Klasyczny uniksowy /bin/vi - ma³y, skompilowany statycznie edytor,
 który przydaje siê przy awarii systemu.
 
 %package X11
 Summary:	xvile (vile with X11 support)
 Summary(pl):	xvile (vile dla X Window)
 Group:		Applications/Editors
+Requires:	%{name}-common = %{version}
 
 %description X11
-xvile - vile with X11 supprt.
+xvile - vile with X11 support.
 
 %description X11 -l pl
 xvile - vile dla X Window.
@@ -70,20 +78,24 @@ xvile - vile dla X Window.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
-chmod -R u+w *
-IMAKE_LOADFLAGS="%{rpmldflags} -static"; export IMAKE_LOADFLAGS
-%{__aclocal} -I macros
+rm -f configure
+%{__autoheader}
 %{__autoconf}
+%if %{with static}
+IMAKE_LOADFLAGS="%{rpmldflags} -static"; export IMAKE_LOADFLAGS
 %configure \
 	--with-screen=ncurses \
 	--with-CFLAGS="%{rpmcflags}"
 
-%{__make}
+%{__make} \
+	LIBS="-lcrypt -lncurses -ltinfo"
 mv -f vile vile.static
-
 %{__make} distclean
+%endif
+
 IMAKE_LOADFLAGS="%{rpmldflags}"; export IMAKE_LOADFLAGS
 %configure \
 	--with-screen=x11 \
@@ -92,8 +104,8 @@ IMAKE_LOADFLAGS="%{rpmldflags}"; export IMAKE_LOADFLAGS
 
 %{__make} xvile
 mv -f xvile vile.x11
-
 %{__make} distclean
+
 %configure \
 	--with-screen=ncurses \
 	--with-locale \
@@ -103,13 +115,12 @@ mv -f xvile vile.x11
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/vile} \
-	$RPM_BUILD_ROOT{%{_prefix}/X11R6/bin,/bin} \
+install -d $RPM_BUILD_ROOT{%{_bindir},/bin,%{_mandir}/man1,%{_datadir}/vile} \
 	$RPM_BUILD_ROOT%{_applnkdir}/Editors
 
 install vile $RPM_BUILD_ROOT%{_bindir}/vile
-install vile.static $RPM_BUILD_ROOT/bin/vi
-install vile.x11 $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xvile
+%{?with_static:install vile.static $RPM_BUILD_ROOT/bin/vi}
+install vile.x11 $RPM_BUILD_ROOT%{_bindir}/xvile
 install vile.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 install vile.hlp $RPM_BUILD_ROOT%{_datadir}/vile
@@ -131,14 +142,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* CHANGES* doc/*
 %{_mandir}/man1/vile.1*
+%attr(755,root,root) %{_bindir}/atr2*
 %attr(755,root,root) %{_bindir}/vile-*
 %{_datadir}/vile
 
+%if %{with static}
 %files static
 %defattr(644,root,root,755)
 %attr(755,root,root) /bin/vi
+%endif
 
 %files X11
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_prefix}/X11R6/bin/xvile
+%attr(755,root,root) %{_bindir}/xvile
 %{_applnkdir}/Editors/xvile.desktop

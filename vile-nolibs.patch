@@ -1,0 +1,13 @@
+--- vile-9.4/aclocal.m4.orig	2003-05-24 17:05:47.000000000 +0200
++++ vile-9.4/aclocal.m4	2003-08-17 11:55:53.847344176 +0200
+@@ -2605,8 +2605,8 @@
+ 		]) ]) ]) ]) ])
+ 	;;
+ *)
+-	AC_CHECK_LIB(socket,socket)
+-	AC_CHECK_LIB(nsl,gethostname)
++	AC_SEARCH_LIBS(socket,socket)
++	AC_SEARCH_LIBS(gethostname,nsl)
+ 	;;
+ esac
+ 
