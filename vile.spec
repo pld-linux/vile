@@ -2,7 +2,7 @@ Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	9.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Editors
 Group(pt):	X11/Aplicações/Editores
