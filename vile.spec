@@ -7,6 +7,7 @@ License:	GPL
 Group:		Applications/Editors
 # Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
+# Source0-md5:	9d8f396a936986d5a3542e40568886c8
 Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
 Icon:		vile.xpm
