@@ -17,7 +17,6 @@ BuildRequires:	ncurses-devel
 BuildRequires:	XFree86-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
 vile is a text editor which is extremely compatible with vi in terms
 of "finger feel". in addition, it has extended capabilities in many
@@ -41,7 +40,7 @@ Group(pt):	Aplicações/Editores
 %description common
 This package contains common files for vile and xvile.
 
-%description -l pl
+%description common -l pl
 Ten pakiet zawiera wspólne pliki vile i xvile.
 
 %package static
