@@ -2,12 +2,14 @@ Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	8.3
-Release:	2
+Release:	2.1
 Group:		Applications/Editors
 Group(pl):	Aplikacje/Edytory
 Copyright:	GPL
-Source:		ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
-URL:		http://www.clark.net/pub/dickey/vile/
+Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
+Source1:	xvile.desktop
+Icon:		vile.xpm
+URL:		http://www.clark.net/pub/dickey/vile/vile.html
 BuildPrereq:	ncurses-devel
 BuildPrereq:	XFree86-libs
 BuildRoot:   	/tmp/%{name}-%{version}-root
@@ -67,37 +69,50 @@ xvile - vile dla X Window.
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-static -s" \
-./configure %{_target_platform} \
-	--prefix=%{_prefix} \
-	--with-screen=ncurses
+IMAKE_LOADFLAGS="-s -static"; export IMAKE_LOADFLAGS
+%configure \
+	--with-screen=ncurses \
+	--with-CFLAGS="$RPM_OPT_FLAGS"
+
 make
 mv vile vile.static
-make distclean
 
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=%{_prefix} \
-	--with-screen=x11
+make distclean
+IMAKE_LOADFLAGS="-s"; export IMAKE_LOADFLAGS
+%configure \
+	--with-screen=x11 \
+	--with-locale \
+	--with-CFLAGS="$RPM_OPT_FLAGS"
+
 make xvile
 mv xvile vile.x11
-make distclean
 
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure \
-	--prefix=%{_prefix} \
-	--with-screen=ncurses
+make distclean
+%configure \
+	--with-screen=ncurses \
+	--with-locale \
+	--with-CFLAGS="$RPM_OPT_FLAGS"
+
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/usr/X11R6/bin,/bin}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/vile} \
+	$RPM_BUILD_ROOT{/usr/X11R6/bin,/bin} \
+	$RPM_BUILD_ROOT/etc/X11/applnk/Applications/Editors
 
 install -s vile		$RPM_BUILD_ROOT%{_bindir}/vile
 install -s vile.static	$RPM_BUILD_ROOT/bin/vi
 install -s vile.x11	$RPM_BUILD_ROOT/usr/X11R6/bin/xvile
-install -s vile-*	$RPM_BUILD_ROOT%{_bindir}
 install    vile.1	$RPM_BUILD_ROOT%{_mandir}/man1
+
+install vile.hlp	$RPM_BUILD_ROOT%{_datadir}/vile
+
+make -C filters install \
+	datadir=$RPM_BUILD_ROOT%{_datadir}/vile \
+	bindir=$RPM_BUILD_ROOT%{_bindir}
+
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/applnk/Applications/Editors
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README* CHANGES* doc/*
 
@@ -110,11 +125,13 @@ rm -rf $RPM_BUILD_ROOT
 %files common
 %defattr(644,root,root,755)
 %doc {*,doc/*}.gz
-%{_mandir}/man1/vile.1.gz
+%{_mandir}/man1/vile.1*
 %attr(755,root,root) %{_bindir}/vile-*
+%{_datadir}/vile
 
 %files static
 %attr(755,root,root) /bin/vi
 
 %files X11
 %attr(755,root,root) /usr/X11R6/bin/xvile
+%attr(644,root,root) /etc/X11/applnk/Applications/Editors/xvile.desktop
