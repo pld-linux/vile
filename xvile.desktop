@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=xvile
+Comment=VI Like Emacs for X
+Comment[pl]=Vi jak Emacs pod X
+Exec=xvile &
+Terminal=0
+Type=Application
