@@ -70,7 +70,7 @@ xvile - vile dla X Window.
 chmod -R u+w *
 IMAKE_LOADFLAGS="%{rpmldflags} -static"; export IMAKE_LOADFLAGS
 aclocal -I macros
-autoconf
+%{__autoconf}
 %configure \
 	--with-screen=ncurses \
 	--with-CFLAGS="%{rpmcflags}"
