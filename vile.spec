@@ -118,12 +118,3 @@ rm -rf $RPM_BUILD_ROOT
 
 %files X11
 %attr(755,root,root) /usr/X11R6/bin/xvile
-
-%changelog
-* Mon May 31 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [8.3-2]
-- added using more rpm macros.
-
-* Sat Apr 24 1999 Micha³ Kuratczyk <kura@pld.org.pl>
-  [8.3-1]
-- initial release
