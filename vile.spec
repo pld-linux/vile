@@ -6,7 +6,7 @@ Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	9.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Editors
 # Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
@@ -116,7 +116,7 @@ mv -f xvile vile.x11
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},/bin,%{_mandir}/man1,%{_datadir}/vile} \
-	$RPM_BUILD_ROOT%{_applnkdir}/Editors
+	$RPM_BUILD_ROOT%{_desktopdir}
 
 install vile $RPM_BUILD_ROOT%{_bindir}/vile
 %{?with_static:install vile.static $RPM_BUILD_ROOT/bin/vi}
@@ -129,7 +129,7 @@ install vile.hlp $RPM_BUILD_ROOT%{_datadir}/vile
 	datadir=$RPM_BUILD_ROOT%{_datadir}/vile \
 	bindir=$RPM_BUILD_ROOT%{_bindir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Editors
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -155,4 +155,4 @@ rm -rf $RPM_BUILD_ROOT
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/xvile
-%{_applnkdir}/Editors/xvile.desktop
+%{_desktopdir}/*
