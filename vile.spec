@@ -68,7 +68,7 @@ xvile - vile dla X Window.
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-static -s" \
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=/usr \
 	--with-screen=ncurses
 make
@@ -76,7 +76,7 @@ mv vile vile.static
 make distclean
 
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=%{_prefix} \
 	--with-screen=x11
 make xvile
