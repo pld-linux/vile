@@ -1,0 +1,4 @@
+- addedd installing filters vile.hlp,
+- fixed passing $RPM_OPT_FLAGS and -static,
+- added using %%configure macros,
+- revision changed to 2.1.
