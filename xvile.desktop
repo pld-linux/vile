@@ -6,4 +6,5 @@ Comment[pl]=Vi jak Emacs dla Systemu X Window
 Exec=xvile &
 Terminal=false
 Type=Application
+Categories=TextEditor;
 # vi: encoding=utf-8
