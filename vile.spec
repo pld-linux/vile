@@ -41,6 +41,7 @@ Summary(pl):	vile skompilowany statycznie
 Group:		Applications/Editors
 Group(pl):	Aplikacje/Edytory
 Provides:	vi
+Obsoletes:	vi
 
 %description static
 The classic unix /bin/vi - small, static comiled editor which is useful
