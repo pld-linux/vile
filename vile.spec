@@ -93,10 +93,10 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{usr/{bin,doc,man/man1,X11R6/bin},bin}
 
-install -s vile		$RPM_BUILD_ROOT/usr/bin/vile
+install -s vile		$RPM_BUILD_ROOT%{_bindir}/vile
 install -s vile.static	$RPM_BUILD_ROOT/bin/vi
 install -s vile.x11	$RPM_BUILD_ROOT/usr/X11R6/bin/xvile
-install -s vile-*	$RPM_BUILD_ROOT/usr/bin
+install -s vile-*	$RPM_BUILD_ROOT%{_bindir}
 install    vile.1	$RPM_BUILD_ROOT%{_mandir}/man1
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README* CHANGES* doc/*
@@ -105,13 +105,13 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README* CHANGES* doc/*
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755,root,root) /usr/bin/vile
+%attr(755,root,root) %{_bindir}/vile
 
 %files common
 %defattr(644,root,root,755)
 %doc {*,doc/*}.gz
 %{_mandir}/man1/vile.1.gz
-%attr(755,root,root) /usr/bin/vile-*
+%attr(755,root,root) %{_bindir}/vile-*
 
 %files static
 %attr(755,root,root) /bin/vi
