@@ -1,14 +1,15 @@
 Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
-Version:	9.1
-Release:	3
+Version:	9.2
+Release:	1
 License:	GPL
 Group:		Applications/Editors
 Group(de):	Applikationen/Editors
 Group(pl):	Aplikacje/Edytory
 Group(pt):	Aplicações/Editores
-Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
+# Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
+Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
 Source1:	x%{name}.desktop
 Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
