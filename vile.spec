@@ -2,7 +2,7 @@ Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	9.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Editors
 Group(pt):	X11/Aplicações/Editores
@@ -105,7 +105,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/vile} \
 	$RPM_BUILD_ROOT{%{_prefix}/X11R6/bin,/bin} \
-	$RPM_BUILD_ROOT%{_applnkdir}/Applications/Editors
+	$RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 
 install -s vile	$RPM_BUILD_ROOT%{_bindir}/vile
 install -s vile.static $RPM_BUILD_ROOT/bin/vi
@@ -118,7 +118,7 @@ make -C filters install \
 	datadir=$RPM_BUILD_ROOT%{_datadir}/vile \
 	bindir=$RPM_BUILD_ROOT%{_bindir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Applications/Editors
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README* CHANGES* doc/*
 
@@ -143,4 +143,4 @@ rm -rf $RPM_BUILD_ROOT
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_prefix}/X11R6/bin/xvile
-%{_applnkdir}/Applications/Editors/xvile.desktop
+%{_applnkdir}/Office/Editors/xvile.desktop
