@@ -10,8 +10,8 @@ Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 Source1:	xvile.desktop
 Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
-BuildPrereq:	ncurses-devel
-BuildPrereq:	XFree86-libs
+BuildRequires:	ncurses-devel
+BuildRequires:	XFree86-libs
 BuildRoot:   	/tmp/%{name}-%{version}-root
 
 %description
