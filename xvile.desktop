@@ -3,5 +3,5 @@ Name=Xvile
 Comment=VI Like Emacs for X Window System
 Comment[pl]=Vi jak Emacs dla Systemu X Window
 Exec=xvile &
-Terminal=0
+Terminal=false
 Type=Application
