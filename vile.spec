@@ -5,9 +5,6 @@ Version:	9.2
 Release:	1
 License:	GPL
 Group:		Applications/Editors
-Group(de):	Applikationen/Editors
-Group(pl):	Aplikacje/Edytory
-Group(pt):	Aplicações/Editores
 # Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
 Source1:	x%{name}.desktop
@@ -33,9 +30,6 @@ X Window.
 Summary:	Common files for vile and xvile
 Summary(pl):	Wspólne pliki vile i xvile
 Group:		Applications/Editors
-Group(de):	Applikationen/Editors
-Group(pl):	Aplikacje/Edytory
-Group(pt):	Aplicações/Editores
 
 %description common
 This package contains common files for vile and xvile.
@@ -47,9 +41,6 @@ Ten pakiet zawiera wspólne pliki vile i xvile.
 Summary:	vile static
 Summary(pl):	vile skompilowany statycznie
 Group:		Applications/Editors
-Group(de):	Applikationen/Editors
-Group(pl):	Aplikacje/Edytory
-Group(pt):	Aplicações/Editores
 Provides:	vi
 Obsoletes:	vi
 
@@ -65,9 +56,6 @@ który przydaje siê przy awarii systemu.
 Summary:	xvile (vile with X11 support)
 Summary(pl):	xvile (vile dla X Window)
 Group:		Applications/Editors
-Group(de):	Applikationen/Editors
-Group(pl):	Aplikacje/Edytory
-Group(pt):	Aplicações/Editores
 
 %description X11
 xvile - vile with X11 supprt.
