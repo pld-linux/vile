@@ -80,7 +80,7 @@ IMAKE_LOADFLAGS="-s -static"; export IMAKE_LOADFLAGS
 	--with-screen=ncurses \
 	--with-CFLAGS="$RPM_OPT_FLAGS"
 
-make
+%{__make}
 mv vile vile.static
 
 %{__make} distclean
@@ -99,7 +99,7 @@ mv xvile vile.x11
 	--with-locale \
 	--with-CFLAGS="$RPM_OPT_FLAGS"
 
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
