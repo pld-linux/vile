@@ -1,0 +1,47 @@
+--- ./configure.in.org	Sun Jan 20 16:54:01 2002
++++ ./configure.in	Wed Jul 24 02:31:16 2002
+@@ -25,13 +25,8 @@
+ AC_PROG_RANLIB
+ AC_DECL_YYTEXT
+ 
+-CF_SUBST(archiver,AR,ar)
+-CF_SUBST(archiver options,AR_OPTS,rv)
+-
+-CF_DISABLE_ECHO
+-CF_PATHSEP
+-CF_PROG_EXT
+-CF_LIB_PREFIX
++AC_SUBST(archiver,[AR],[ar])
++AC_SUBST(archiver options,[AR_OPTS],[rv])
+ 
+ ###	checks for UNIX variants that set C preprocessor variables
+ AC_AIX
+@@ -39,17 +34,15 @@
+ AC_MINIX
+ 
+ ###	checks for compiler characteristics
+-CF_ANSI_CC_REQD
+ AC_CONST
+-CF_CC_INIT_UNIONS
+ 
+ ###	options to control how much we build
+ AC_MSG_CHECKING(if you wish to build only core functions)
+ CF_ARG_DISABLE(extensions,
+ 	[  --disable-extensions    test: build only core functions],
+-	[DISABLE_EXTS=yes],
++	DISABLE_EXTS=yes,
+ 	[DISABLE_EXTS=no])
+-AC_MSG_RESULT($DISABLE_EXTS)
++AC_MSG_RESULT([$DISABLE_EXTS])
+ if test "$DISABLE_EXTS" = yes ; then
+ 	AC_DEFINE(SMALLER)
+ 	AC_DEFINE(FEWNAMES)
+@@ -62,7 +55,7 @@
+ AC_MSG_CHECKING(if you wish to disable shell/external commands)
+ CF_ARG_DISABLE(shell,
+ 	[  --disable-shell         test: disable shell/external commands],
+-	[DISABLE_SHELL=yes],
++	DISABLE_SHELL=yes,
+ 	[DISABLE_SHELL=no])
+ AC_MSG_RESULT($DISABLE_SHELL)
+ if test "$DISABLE_SHELL" = yes ; then
