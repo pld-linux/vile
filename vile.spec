@@ -17,13 +17,13 @@ Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-nolibs.patch
 Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
-BuildRequires:	XFree86-libs
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_static:BuildRequires:	glibc-static}
 BuildRequires:	ncurses-devel
 %{?with_static:BuildRequires:	ncurses-static}
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -68,7 +68,7 @@ który przydaje siê przy awarii systemu.
 Summary:	xvile (vile with X11 support)
 Summary(pl):	xvile (vile dla X Window)
 Group:		Applications/Editors
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 
 %description X11
 xvile - vile with X11 support.
