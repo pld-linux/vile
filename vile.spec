@@ -5,10 +5,11 @@ Version:	9.1
 Release:	3
 License:	GPL
 Group:		Applications/Editors
-Group(pt):	X11/Aplicações/Editores
+Group(de):	Applikationen/Editors
 Group(pl):	Aplikacje/Edytory
+Group(pt):	Aplicações/Editores
 Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
-Source1:	xvile.desktop
+Source1:	x%{name}.desktop
 Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
 BuildRequires:	ncurses-devel
@@ -32,8 +33,9 @@ X Window.
 Summary:	Common files for vile and xvile
 Summary(pl):	Wspólne pliki vile i xvile
 Group:		Applications/Editors
-Group(pt):	X11/Aplicações/Editores
+Group(de):	Applikationen/Editors
 Group(pl):	Aplikacje/Edytory
+Group(pt):	Aplicações/Editores
 
 %description common
 This package contains common files for vile and xvile.
@@ -45,8 +47,9 @@ Ten pakiet zawiera wspólne pliki vile i xvile.
 Summary:	vile static
 Summary(pl):	vile skompilowany statycznie
 Group:		Applications/Editors
-Group(pt):	X11/Aplicações/Editores
+Group(de):	Applikationen/Editors
 Group(pl):	Aplikacje/Edytory
+Group(pt):	Aplicações/Editores
 Provides:	vi
 Obsoletes:	vi
 
@@ -62,8 +65,9 @@ który przydaje siê przy awarii systemu.
 Summary:	xvile (vile with X11 support)
 Summary(pl):	xvile (vile dla X Window)
 Group:		Applications/Editors
-Group(pt):	X11/Aplicações/Editores
+Group(de):	Applikationen/Editors
 Group(pl):	Aplikacje/Edytory
+Group(pt):	Aplicações/Editores
 
 %description X11
 xvile - vile with X11 supprt.
@@ -75,29 +79,29 @@ xvile - vile dla X Window.
 %setup -q
 
 %build
-IMAKE_LOADFLAGS="-s -static"; export IMAKE_LOADFLAGS
+IMAKE_LOADFLAGS="%{rpmldflags} -static"; export IMAKE_LOADFLAGS
 %configure \
 	--with-screen=ncurses \
-	--with-CFLAGS="$RPM_OPT_FLAGS"
+	--with-CFLAGS="%{rpmcflags}"
 
 %{__make}
-mv vile vile.static
+mv -f vile vile.static
 
 %{__make} distclean
-IMAKE_LOADFLAGS="-s"; export IMAKE_LOADFLAGS
+IMAKE_LOADFLAGS="%{rpmldflags}"; export IMAKE_LOADFLAGS
 %configure \
 	--with-screen=x11 \
 	--with-locale \
-	--with-CFLAGS="$RPM_OPT_FLAGS"
+	--with-CFLAGS="%{rpmcflags}"
 
 %{__make} xvile
-mv xvile vile.x11
+mv -f xvile vile.x11
 
 %{__make} distclean
 %configure \
 	--with-screen=ncurses \
 	--with-locale \
-	--with-CFLAGS="$RPM_OPT_FLAGS"
+	--with-CFLAGS="%{rpmcflags}"
 
 %{__make}
 
@@ -107,9 +111,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/vile} \
 	$RPM_BUILD_ROOT{%{_prefix}/X11R6/bin,/bin} \
 	$RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 
-install -s vile	$RPM_BUILD_ROOT%{_bindir}/vile
-install -s vile.static $RPM_BUILD_ROOT/bin/vi
-install -s vile.x11 $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xvile
+install vile $RPM_BUILD_ROOT%{_bindir}/vile
+install vile.static $RPM_BUILD_ROOT/bin/vi
+install vile.x11 $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xvile
 install vile.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 install vile.hlp $RPM_BUILD_ROOT%{_datadir}/vile
@@ -120,7 +124,7 @@ install vile.hlp $RPM_BUILD_ROOT%{_datadir}/vile
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README* CHANGES* doc/*
+gzip -9nf README* CHANGES* doc/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
