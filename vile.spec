@@ -99,7 +99,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/vile} \
 	$RPM_BUILD_ROOT{/usr/X11R6/bin,/bin} \
-	$RPM_BUILD_ROOT/etc/X11/applnk/Applications/Editors
+	$RPM_BUILD_ROOT/usr/X11R6/share/applnk/Applications/Editors
 
 install -s vile		$RPM_BUILD_ROOT%{_bindir}/vile
 install -s vile.static	$RPM_BUILD_ROOT/bin/vi
@@ -112,7 +112,7 @@ make -C filters install \
 	datadir=$RPM_BUILD_ROOT%{_datadir}/vile \
 	bindir=$RPM_BUILD_ROOT%{_bindir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/applnk/Applications/Editors
+install %{SOURCE1} $RPM_BUILD_ROOT/usr/X11R6/share/applnk/Applications/Editors
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README* CHANGES* doc/*
 
@@ -134,4 +134,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files X11
 %attr(755,root,root) /usr/X11R6/bin/xvile
-%attr(644,root,root) /etc/X11/applnk/Applications/Editors/xvile.desktop
+%attr(644,root,root) /usr/X11R6/share/applnk/Applications/Editors/xvile.desktop
