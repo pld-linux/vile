@@ -10,7 +10,7 @@ Source:		ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 URL:		http://www.clark.net/pub/dickey/vile/
 BuildPrereq:	ncurses-devel
 BuildPrereq:	XFree86-libs
-BuildRoot:   	/tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 vile is a text editor which is extremely compatible with vi in terms
