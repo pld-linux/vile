@@ -69,7 +69,7 @@ xvile - vile dla X Window.
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-static -s" \
 ./configure %{_target_platform} \
-	--prefix=/usr \
+	--prefix=%{_prefix} \
 	--with-screen=ncurses
 make
 mv vile vile.static
