@@ -19,6 +19,7 @@ Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
 BuildRequires:	XFree86-libs
 BuildRequires:	autoconf
+BuildRequires:	automake
 %{?with_static:BuildRequires:	glibc-static}
 BuildRequires:	ncurses-devel
 %{?with_static:BuildRequires:	ncurses-static}
@@ -81,6 +82,7 @@ xvile - vile dla X Window.
 %patch1 -p1
 
 %build
+cp -f /usr/share/automake/config.sub .
 rm -f configure
 %{__autoheader}
 %{__autoconf}
