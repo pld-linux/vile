@@ -1,14 +1,13 @@
 Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
-Version:	8.0
+Version:	8.3
 Release:	1
 Group:		Applications/Editors
 Group(pl):	Aplikacje/Edytory
 Copyright:	GPL
-Vendor:		PLD
-URL:		http://www.clark.net/pub/dickey/vile
 Source:		ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
+URL:		http://www.clark.net/pub/dickey/vile/
 BuildPrereq:	ncurses-devel
 BuildPrereq:	XFree86-libs
 BuildRoot:   	/tmp/%{name}-%{version}-root
@@ -41,6 +40,7 @@ Summary:	vile static
 Summary(pl):	vile skompilowany statycznie
 Group:		Applications/Editors
 Group(pl):	Aplikacje/Edytory
+Provides:	vi
 
 %description static
 The classic unix /bin/vi - small, static comiled editor which is useful
