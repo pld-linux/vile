@@ -12,7 +12,7 @@ Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
 BuildRequires:	ncurses-devel
 BuildRequires:	XFree86-libs
-BuildRoot:   	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 vile is a text editor which is extremely compatible with vi in terms
