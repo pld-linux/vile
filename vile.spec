@@ -11,8 +11,10 @@ Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
 Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
-BuildRequires:	ncurses-devel
 BuildRequires:	XFree86-libs
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -71,7 +73,7 @@ xvile - vile dla X Window.
 %build
 chmod -R u+w *
 IMAKE_LOADFLAGS="%{rpmldflags} -static"; export IMAKE_LOADFLAGS
-aclocal -I macros
+%{__aclocal} -I macros
 %{__autoconf}
 %configure \
 	--with-screen=ncurses \
