@@ -91,7 +91,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/usr/X11R6/bin}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/usr/X11R6/bin,/bin}
 
 install -s vile		$RPM_BUILD_ROOT%{_bindir}/vile
 install -s vile.static	$RPM_BUILD_ROOT/bin/vi
