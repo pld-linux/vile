@@ -1,13 +1,14 @@
 Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
-Version:	9.2
-Release:	1
+Version:	9.3
+Release:	0.1
 License:	GPL
 Group:		Applications/Editors
 # Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
 Source1:	x%{name}.desktop
+Patch0:		%{name}-ac_fix.patch
 Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
 BuildRequires:	ncurses-devel
@@ -65,6 +66,7 @@ xvile - vile dla X Window.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 chmod -R u+w *
@@ -115,8 +117,6 @@ install vile.hlp $RPM_BUILD_ROOT%{_datadir}/vile
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Editors
 
-gzip -9nf README* CHANGES* doc/*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -126,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files common
 %defattr(644,root,root,755)
-%doc {*,doc/*}.gz
+%doc README* CHANGES* doc/*
 %{_mandir}/man1/vile.1*
 %attr(755,root,root) %{_bindir}/vile-*
 %{_datadir}/vile
