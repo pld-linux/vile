@@ -83,17 +83,17 @@ IMAKE_LOADFLAGS="-s -static"; export IMAKE_LOADFLAGS
 make
 mv vile vile.static
 
-make distclean
+%{__make} distclean
 IMAKE_LOADFLAGS="-s"; export IMAKE_LOADFLAGS
 %configure \
 	--with-screen=x11 \
 	--with-locale \
 	--with-CFLAGS="$RPM_OPT_FLAGS"
 
-make xvile
+%{__make} xvile
 mv xvile vile.x11
 
-make distclean
+%{__make} distclean
 %configure \
 	--with-screen=ncurses \
 	--with-locale \
@@ -114,7 +114,7 @@ install vile.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 install vile.hlp $RPM_BUILD_ROOT%{_datadir}/vile
 
-make -C filters install \
+%{__make} -C filters install \
 	datadir=$RPM_BUILD_ROOT%{_datadir}/vile \
 	bindir=$RPM_BUILD_ROOT%{_bindir}
 
