@@ -2,7 +2,7 @@ Summary:	Text editor compatible with Vi
 Summary(pl):	Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	8.3
-Release:	1
+Release:	2
 Group:		Applications/Editors
 Group(pl):	Aplikacje/Edytory
 Copyright:	GPL
@@ -10,7 +10,7 @@ Source:		ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 URL:		http://www.clark.net/pub/dickey/vile/
 BuildPrereq:	ncurses-devel
 BuildPrereq:	XFree86-libs
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:   	/tmp/%{name}-%{version}-root
 
 %description
 vile is a text editor which is extremely compatible with vi in terms
@@ -77,7 +77,7 @@ make distclean
 
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure %{_target} \
-	--prefix=/usr \
+	--prefix=%{_prefix} \
 	--with-screen=x11
 make xvile
 mv xvile vile.x11
@@ -85,13 +85,13 @@ make distclean
 
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure \
-	--prefix=/usr \
+	--prefix=%{_prefix} \
 	--with-screen=ncurses
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{usr/{bin,doc,man/man1,X11R6/bin},bin}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/usr/X11R6/bin}
 
 install -s vile		$RPM_BUILD_ROOT%{_bindir}/vile
 install -s vile.static	$RPM_BUILD_ROOT/bin/vi
@@ -120,6 +120,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/X11R6/bin/xvile
 
 %changelog
+* Mon May 31 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [8.3-2]
+- added using more rpm macros.
+
 * Sat Apr 24 1999 Micha³ Kuratczyk <kura@pld.org.pl>
-  [8.0-1]
+  [8.3-1]
 - initial release
