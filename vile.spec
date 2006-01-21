@@ -15,7 +15,6 @@ Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
 Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-nolibs.patch
-Icon:		vile.xpm
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
