@@ -3,7 +3,7 @@
 %bcond_without	static	# don't build static version
 #
 Summary:	Text editor compatible with Vi
-Summary(pl):	Edytor tekstu kompatybilny z Vi
+Summary(pl.UTF-8):   Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	9.4
 Release:	2
@@ -31,26 +31,26 @@ of "finger feel". in addition, it has extended capabilities in many
 areas, notably multi-file editing and viewing, key rebinding, and real
 X window system support.
 
-%description -l pl
-vile to edytor tekstu ¶ci¶le kompatybilny z Vi je¶li chodzi o
-klawiszologiê. Posiada wiele przydatnych dodatków jak mo¿liwo¶æ edycji
-wielu plików równocze¶nie, przemapowywanie klawiszy czy interfejs dla
+%description -l pl.UTF-8
+vile to edytor tekstu Å›ciÅ›le kompatybilny z Vi jeÅ›li chodzi o
+klawiszologiÄ™. Posiada wiele przydatnych dodatkÃ³w jak moÅ¼liwoÅ›Ä‡ edycji
+wielu plikÃ³w rÃ³wnoczeÅ›nie, przemapowywanie klawiszy czy interfejs dla
 X Window.
 
 %package common
 Summary:	Common files for vile and xvile
-Summary(pl):	Wspólne pliki vile i xvile
+Summary(pl.UTF-8):   WspÃ³lne pliki vile i xvile
 Group:		Applications/Editors
 
 %description common
 This package contains common files for vile and xvile.
 
-%description common -l pl
-Ten pakiet zawiera pliki wspólne dla vile i xvile.
+%description common -l pl.UTF-8
+Ten pakiet zawiera pliki wspÃ³lne dla vile i xvile.
 
 %package static
 Summary:	vile static
-Summary(pl):	vile skompilowany statycznie
+Summary(pl.UTF-8):   vile skompilowany statycznie
 Group:		Applications/Editors
 Provides:	vi
 Obsoletes:	vi
@@ -59,20 +59,20 @@ Obsoletes:	vi
 The classic unix /bin/vi - small, static comiled editor which is
 useful as a rescue tool.
 
-%description static -l pl
-Klasyczny uniksowy /bin/vi - ma³y, skompilowany statycznie edytor,
-który przydaje siê przy awarii systemu.
+%description static -l pl.UTF-8
+Klasyczny uniksowy /bin/vi - maÅ‚y, skompilowany statycznie edytor,
+ktÃ³ry przydaje siÄ™ przy awarii systemu.
 
 %package X11
 Summary:	xvile (vile with X11 support)
-Summary(pl):	xvile (vile dla X Window)
+Summary(pl.UTF-8):   xvile (vile dla X Window)
 Group:		Applications/Editors
 Requires:	%{name}-common = %{version}-%{release}
 
 %description X11
 xvile - vile with X11 support.
 
-%description X11 -l pl
+%description X11 -l pl.UTF-8
 xvile - vile dla X Window.
 
 %prep
