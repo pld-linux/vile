@@ -3,7 +3,7 @@
 %bcond_without	static	# don't build static version
 #
 Summary:	Text editor compatible with Vi
-Summary(pl.UTF-8):   Edytor tekstu kompatybilny z Vi
+Summary(pl.UTF-8):	Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	9.4
 Release:	2
@@ -39,7 +39,7 @@ X Window.
 
 %package common
 Summary:	Common files for vile and xvile
-Summary(pl.UTF-8):   Wspólne pliki vile i xvile
+Summary(pl.UTF-8):	Wspólne pliki vile i xvile
 Group:		Applications/Editors
 
 %description common
@@ -50,7 +50,7 @@ Ten pakiet zawiera pliki wspólne dla vile i xvile.
 
 %package static
 Summary:	vile static
-Summary(pl.UTF-8):   vile skompilowany statycznie
+Summary(pl.UTF-8):	vile skompilowany statycznie
 Group:		Applications/Editors
 Provides:	vi
 Obsoletes:	vi
@@ -65,7 +65,7 @@ który przydaje się przy awarii systemu.
 
 %package X11
 Summary:	xvile (vile with X11 support)
-Summary(pl.UTF-8):   xvile (vile dla X Window)
+Summary(pl.UTF-8):	xvile (vile dla X Window)
 Group:		Applications/Editors
 Requires:	%{name}-common = %{version}-%{release}
 
