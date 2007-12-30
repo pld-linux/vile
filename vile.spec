@@ -5,18 +5,18 @@
 Summary:	Text editor compatible with Vi
 Summary(pl.UTF-8):	Edytor tekstu kompatybilny z Vi
 Name:		vile
-Version:	9.4
-Release:	2
+Version:	9.6
+Release:	1
 License:	GPL
 Group:		Applications/Editors
 # Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
-# Source0-md5:	1c69045467b7c48be99fa7ac2052a95f
+# Source0-md5:	3695e234f4e7e9038450876f44832613
 Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://www.clark.net/pub/dickey/vile/vile.html
-BuildRequires:	XFree86-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_static:BuildRequires:	glibc-static}
@@ -82,14 +82,14 @@ xvile - vile dla X Window.
 
 %build
 cp -f /usr/share/automake/config.sub .
-rm -f configure
-%{__autoheader}
-%{__autoconf}
+#rm -f configure
+#%{__autoconf}
 %if %{with static}
-IMAKE_LOADFLAGS="%{rpmldflags} -static"; export IMAKE_LOADFLAGS
+LDFLAGS="%{rpmldflags} -static"
 %configure \
 	--with-screen=ncurses \
-	--with-CFLAGS="%{rpmcflags}"
+	--without-x \
+	--with-cflags="%{rpmcflags}"
 
 %{__make} \
 	LIBS="-lcrypt -lncurses -ltinfo"
@@ -97,11 +97,11 @@ mv -f vile vile.static
 %{__make} distclean
 %endif
 
-IMAKE_LOADFLAGS="%{rpmldflags}"; export IMAKE_LOADFLAGS
+LDFLAGS="%{rpmldflags}"; export LDFLAGS
 %configure \
 	--with-screen=x11 \
 	--with-locale \
-	--with-CFLAGS="%{rpmcflags}"
+	--with-cflags="%{rpmcflags}"
 
 %{__make} xvile
 mv -f xvile vile.x11
@@ -110,7 +110,7 @@ mv -f xvile vile.x11
 %configure \
 	--with-screen=ncurses \
 	--with-locale \
-	--with-CFLAGS="%{rpmcflags}"
+	--with-cflags="%{rpmcflags}"
 
 %{__make}
 
