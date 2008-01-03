@@ -7,21 +7,20 @@ Summary(pl.UTF-8):	Edytor tekstu kompatybilny z Vi
 Name:		vile
 Version:	9.6
 Release:	1
-License:	GPL
+License:	GPL v2
 Group:		Applications/Editors
-# Source0:	ftp://ftp.clark.net/pub/dickey/vile/%{name}-%{version}.tgz
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
 # Source0-md5:	3695e234f4e7e9038450876f44832613
 Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
-Patch1:		%{name}-nolibs.patch
-URL:		http://www.clark.net/pub/dickey/vile/vile.html
-BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	autoconf
+URL:		http://invisible-island.net/vile/
 BuildRequires:	automake
-%{?with_static:BuildRequires:	glibc-static}
 BuildRequires:	ncurses-devel
-%{?with_static:BuildRequires:	ncurses-static}
+BuildRequires:	xorg-lib-libXt-devel
+%if %{with static}
+BuildRequires:	glibc-static
+BuildRequires:	ncurses-static
+%endif
 Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -65,8 +64,8 @@ który przydaje się przy awarii systemu.
 
 %package X11
 Summary:	xvile (vile with X11 support)
-Summary(pl.UTF-8):	xvile (vile dla X Window)
-Group:		Applications/Editors
+Summary(pl.UTF-8):	xvile (vile dla X Window System)
+Group:		X11/Applications/Editors
 Requires:	%{name}-common = %{version}-%{release}
 
 %description X11
@@ -82,8 +81,6 @@ xvile - vile dla X Window.
 
 %build
 cp -f /usr/share/automake/config.sub .
-#rm -f configure
-#%{__autoconf}
 %if %{with static}
 LDFLAGS="%{rpmldflags} -static"
 %configure \
