@@ -55,7 +55,7 @@ Provides:	vi
 Obsoletes:	vi
 
 %description static
-The classic unix /bin/vi - small, static comiled editor which is
+The classic Unix /bin/vi - small, static comiled editor which is
 useful as a rescue tool.
 
 %description static -l pl.UTF-8
