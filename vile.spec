@@ -5,12 +5,12 @@
 Summary:	Text editor compatible with Vi
 Summary(pl.UTF-8):	Edytor tekstu kompatybilny z Vi
 Name:		vile
-Version:	9.6
+Version:	9.7
 Release:	1
 License:	GPL v2
 Group:		Applications/Editors
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
-# Source0-md5:	3695e234f4e7e9038450876f44832613
+# Source0-md5:	3ef25a8b4778d4790defb24729c60ce2
 Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
 URL:		http://invisible-island.net/vile/
@@ -77,7 +77,6 @@ xvile - vile dla X Window.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
