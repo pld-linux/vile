@@ -5,12 +5,12 @@
 Summary:	Text editor compatible with Vi
 Summary(pl.UTF-8):	Edytor tekstu kompatybilny z Vi
 Name:		vile
-Version:	9.7
+Version:	9.8
 Release:	1
 License:	GPL v2
 Group:		Applications/Editors
 Source0:	ftp://invisible-island.net/vile/%{name}-%{version}.tgz
-# Source0-md5:	3ef25a8b4778d4790defb24729c60ce2
+# Source0-md5:	b5a0d89165f633a662cdb4b5c57f2e2f
 Source1:	x%{name}.desktop
 Patch0:		%{name}-ac_fix.patch
 URL:		http://invisible-island.net/vile/
@@ -112,21 +112,14 @@ mv -f xvile vile.x11
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},/bin,%{_mandir}/man1,%{_datadir}/vile} \
-	$RPM_BUILD_ROOT%{_desktopdir}
 
-install vile $RPM_BUILD_ROOT%{_bindir}/vile
-%{?with_static:install vile.static $RPM_BUILD_ROOT/bin/vi}
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%{?with_static:install -D vile.static $RPM_BUILD_ROOT/bin/vi}
 install vile.x11 $RPM_BUILD_ROOT%{_bindir}/xvile
-install vile.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
-install vile.hlp $RPM_BUILD_ROOT%{_datadir}/vile
-
-%{__make} -C filters install \
-	datadir=$RPM_BUILD_ROOT%{_datadir}/vile \
-	bindir=$RPM_BUILD_ROOT%{_bindir}
-
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install -Dp %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/xvile.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -138,10 +131,12 @@ rm -rf $RPM_BUILD_ROOT
 %files common
 %defattr(644,root,root,755)
 %doc README* CHANGES* doc/*
-%{_mandir}/man1/vile.1*
-%attr(755,root,root) %{_bindir}/atr2*
-%attr(755,root,root) %{_bindir}/vile-*
+%attr(755,root,root) %{_bindir}/vile-pager
+%dir %{_libdir}/vile
+%attr(755,root,root) %{_libdir}/vile/atr2*
+%attr(755,root,root) %{_libdir}/vile/vile-*
 %{_datadir}/vile
+%{_mandir}/man1/vile.1*
 
 %if %{with static}
 %files static
